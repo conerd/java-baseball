@@ -88,6 +88,7 @@ public class Application {
         for (int i = 0; i < MAX_ARRAY_LENGTH; i++) {
             if (answerList.get(i) == resultList.get(i)) {
                 strikeCount += 1;
+                answerList.set(i, DISABLE_VALUE);
             } else if (isBall(resultList.get(i))) {
                 ballCount += 1;
             }
