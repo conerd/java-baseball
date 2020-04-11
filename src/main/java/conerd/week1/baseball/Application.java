@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Application {
-    static final int MAX_ARRAY_LENGTH = 3;
-    static final int DISABLE_VALUE = -1;
-    static final int GAME_RESTART = 1;
-    static final int GAME_END = 2;
+    private final int MAX_ARRAY_LENGTH = 3;
+    private final int DISABLE_VALUE = -1;
+    private final int GAME_RESTART = 1;
+    private final int GAME_END = 2;
 
     Scanner myScanner = new Scanner(System.in);
 
