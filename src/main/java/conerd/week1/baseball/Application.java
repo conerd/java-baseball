@@ -1,6 +1,8 @@
 package conerd.week1.baseball;
 
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Application {
     static final int MAX_ARRAY_LENGTH = 3;
@@ -10,8 +12,8 @@ public class Application {
 
     Scanner myScanner = new Scanner(System.in);
 
-    int[] resultArray = new int[MAX_ARRAY_LENGTH];
-    int[] answerArray = new int[MAX_ARRAY_LENGTH];
+    List<Integer> resultList = new ArrayList<Integer>(MAX_ARRAY_LENGTH);
+    List<Integer> answerList = new ArrayList<Integer>(MAX_ARRAY_LENGTH);
 
     public static void main(String[] args) {
         Application myApplication = new Application();
@@ -38,42 +40,44 @@ public class Application {
             }
         }
 
-        return (restartButton == GAME_RESTART);
+        return !(restartButton == GAME_RESTART);
     }
 
     void startGame() {
-        resultArray = getRandomArray();
+        setResultList();
 
-        playGame(resultArray);
+        playGame();
     }
 
-    int[] getRandomArray() {
-        int[] randomArray = new int[MAX_ARRAY_LENGTH];
-
-        for (int i = 0; i < MAX_ARRAY_LENGTH; i++) {
-            randomArray[i] = (int) (Math.random() * 10);
+    void setResultList() {
+        if (!resultList.isEmpty()) {
+            resultList.clear();
         }
 
-        return randomArray;
+        for (int i = 0; i < MAX_ARRAY_LENGTH; i++) {
+            resultList.add((int) (Math.random() * 10));
+        }
     }
 
-    void playGame(int[] resultArray) {
+    void playGame() {
         boolean isGotRight = false;
 
         while(!isGotRight) {
-            setAnswerArray();
+            setAnswerList();
 
             isGotRight = isRightAnswer();
         }
     }
 
-    void setAnswerArray() {
-        int answer = myScanner.nextInt();
+    void setAnswerList() {
+        if (!answerList.isEmpty()) {
+            answerList.clear();
+        }
 
-        for (int i = 0; i < MAX_ARRAY_LENGTH; i++) {
-            int index = MAX_ARRAY_LENGTH - 1 - i;
-            answerArray[index] = (int) (answer % 10);
-            answer = (int) (answer / 10);
+        String answer = myScanner.next();
+
+        for (int index = 0; index < MAX_ARRAY_LENGTH; index++) {
+            answerList.add(Character.getNumericValue(answer.charAt(index)));
         }
     }
 
@@ -82,10 +86,9 @@ public class Application {
         int ballCount = 0;
 
         for (int i = 0; i < MAX_ARRAY_LENGTH; i++) {
-            if (answerArray[i] == resultArray[i]) {
+            if (answerList.get(i) == resultList.get(i)) {
                 strikeCount += 1;
-                answerArray[i] = DISABLE_VALUE;
-            } else if (isBall(resultArray[i])){
+            } else if (isBall(resultList.get(i))) {
                 ballCount += 1;
             }
         }
@@ -116,9 +119,9 @@ public class Application {
     boolean isBall(int result) {
         boolean isBall = false;
 
-        for (int j = 0; j < MAX_ARRAY_LENGTH && !isBall; j++) {
-            if (result == answerArray[j]) {
-                answerArray[j] = DISABLE_VALUE;
+        for (int i = 0; i < MAX_ARRAY_LENGTH && !isBall; i++) {
+            if (result == answerList.get(i)) {
+                answerList.set(i, DISABLE_VALUE);
                 isBall = true;
             }
         }
