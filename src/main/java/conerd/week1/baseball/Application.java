@@ -26,7 +26,6 @@ public class Application {
     }
 
     boolean isGameEnd() {
-        boolean isGameEnded = false;
         int restartButton = DISABLE_VALUE;
 
         while (restartButton == DISABLE_VALUE) {
@@ -36,12 +35,10 @@ public class Application {
             if (restartButton != GAME_RESTART && restartButton != GAME_END) {
                 System.out.println("요청에 맞지 않는 답입니다. 다시 입력하세요.");
                 restartButton = DISABLE_VALUE;
-            } else {
-                isGameEnded = (restartButton == GAME_RESTART) ? false : true;
             }
         }
 
-        return isGameEnded;
+        return (restartButton == GAME_RESTART);
     }
 
     void startGame() {
@@ -88,8 +85,8 @@ public class Application {
             if (answerArray[i] == resultArray[i]) {
                 strikeCount += 1;
                 answerArray[i] = DISABLE_VALUE;
-            } else {
-                ballCount = (isBall(resultArray[i])) ? ballCount + 1 : ballCount;
+            } else if (isBall(resultArray[i])){
+                ballCount += 1;
             }
         }
 
@@ -99,7 +96,7 @@ public class Application {
             printHint(strikeCount, ballCount);
         }
 
-        return (strikeCount == MAX_ARRAY_LENGTH) ? true : false;
+        return (strikeCount == MAX_ARRAY_LENGTH);
     }
 
     void printHint(int strikeCount, int ballCount) {
