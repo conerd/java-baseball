@@ -42,9 +42,37 @@ public class Digits {
 		List<Digit> result = new ArrayList<>();
 
 		for (int i = 0; i < VALID_LENGTH; i++) {
-			char currentDigit = digits.charAt(i);
-			result.add(new Digit(currentDigit));
+			String currentDigit = digits.split("")[i];
+			result.add(new Digit(Integer.parseInt(currentDigit)));
 		}
 		return of(result);
+	}
+
+	public int getStrikes(Digits that) {
+		int strikeCount = 0;
+
+		for (int i = 0; i < this.digits.size(); i++) {
+			Digit current = digits.get(i);
+			Digit another = that.digits.get(i);
+			if (current.equals(another)) {
+				strikeCount++;
+			}
+		}
+
+		return strikeCount;
+	}
+
+	public int getBalls(Digits that) {
+		int ballCount = 0;
+
+		for (int i = 0; i < this.digits.size(); i++) {
+			Digit current = digits.get(i);
+			Digit another = that.digits.get(i);
+			if (that.digits.contains(current) && !current.equals(another)) {
+				ballCount++;
+			}
+		}
+
+		return ballCount;
 	}
 }
