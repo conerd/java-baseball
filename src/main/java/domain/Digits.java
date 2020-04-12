@@ -34,6 +34,10 @@ public class Digits {
 			.count() > SELF;
 	}
 
+	public static Digits of(List<Digit> digits) {
+		return new Digits(digits);
+	}
+
 	public static Digits of(String digits) {
 		List<Digit> result = new ArrayList<>();
 
@@ -41,6 +45,6 @@ public class Digits {
 			char currentDigit = digits.charAt(i);
 			result.add(new Digit(currentDigit));
 		}
-		return new Digits(result);
+		return of(result);
 	}
 }
