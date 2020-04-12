@@ -1,11 +1,14 @@
 package domain;
 
-import java.util.ArrayList;
+import static java.util.stream.Collectors.*;
+
+import java.util.Arrays;
 import java.util.List;
 
 public class Digits {
 	private static final int VALID_LENGTH = 3;
 	private static final int SELF = 1;
+	private static final String TO_SINGLE = "";
 
 	private final List<Digit> digits;
 
@@ -39,13 +42,10 @@ public class Digits {
 	}
 
 	public static Digits of(String digits) {
-		List<Digit> result = new ArrayList<>();
-
-		for (int i = 0; i < VALID_LENGTH; i++) {
-			String currentDigit = digits.split("")[i];
-			result.add(new Digit(Integer.parseInt(currentDigit)));
-		}
-		return of(result);
+		return of(Arrays.stream(digits.split(TO_SINGLE))
+			.mapToInt(Integer::parseInt)
+			.mapToObj(Digit::new)
+			.collect(toList()));
 	}
 
 	public int getStrikes(Digits that) {
