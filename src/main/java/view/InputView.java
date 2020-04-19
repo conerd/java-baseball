@@ -19,4 +19,8 @@ public class InputView {
 
         return input;
     }
+
+    public static int inputRestart() {
+        return scanner.nextInt();
+    }
 }

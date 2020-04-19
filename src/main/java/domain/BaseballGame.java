@@ -6,6 +6,10 @@ import view.OutputView;
 import java.util.ArrayList;
 
 public class BaseballGame {
+    private static final int RESTART = 1;
+    private static final int INVALID_VALUE = -1;
+    private static final int EXIT = 2;
+
     Computer computer;
     Player player;
 
@@ -27,6 +31,20 @@ public class BaseballGame {
             computer.compareNumbers(playerNumbers);
             OutputView.printResult(computer.getStrikeCount(), computer.getBallCount());
             isGameEnd = computer.isRightAnswer();
+        }
+        askRestart();
+    }
+
+    private void askRestart() {
+        int restartButton = INVALID_VALUE;
+
+        while(restartButton != RESTART && restartButton != EXIT) {
+            OutputView.printRestartInfo();
+            restartButton = InputView.inputRestart();
+        }
+
+        if (restartButton == RESTART) {
+            playGame();
         }
     }
 }
