@@ -3,10 +3,10 @@ package domain;
 public class Computer {
     private static final int MAX_LENGTH = 3;
 
-    public int strikeCount = 0;
-    public int ballCount = 0;
+    private int strikeCount = 0;
+    private int ballCount = 0;
 
-    Numbers numbers;
+    private Numbers numbers;
 
     public void createNumbers() {
         this.numbers = new Numbers();
@@ -14,9 +14,9 @@ public class Computer {
 
     public void compareNumbers(Numbers playerNumbers) {
         for (int i = 0; i < MAX_LENGTH; i++) {
-            if (numbers.getNumber(i) == playerNumbers.getNumber(i)) {
+            if (this.numbers.getNumber(i) == playerNumbers.getNumber(i)) {
                 strikeCount += 1;
-            } else if (playerNumbers.isContaining(numbers.getNumber(i))){
+            } else if (playerNumbers.isContaining(this.numbers.getNumber(i))){
                 ballCount += 1;
             }
         }
@@ -32,5 +32,10 @@ public class Computer {
 
     public boolean isRightAnswer() {
         return (strikeCount == MAX_LENGTH);
+    }
+
+    public void reset() {
+        strikeCount = 0;
+        ballCount = 0;
     }
 }

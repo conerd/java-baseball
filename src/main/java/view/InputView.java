@@ -9,7 +9,7 @@ public class InputView {
     public static String inputNumbers() {
         String input = "";
 
-        System.out.printf("숫자를 입력해주세요 : ");
+        System.out.println("숫자를 입력해주세요 : ");
         input = scanner.nextLine();
 
         while (input.length() != MAX_LENGTH) {

@@ -18,13 +18,13 @@ public class Application {
     public static void main(String[] args) {
         Application myApplication = new Application();
 
-        boolean isGameEnded = false;
-
-        while(!isGameEnded) {
-            myApplication.startGame();
-
-            isGameEnded = myApplication.isGameEnd();
-        }
+//        boolean isGameEnded = false;
+//
+//        while(!isGameEnded) {
+//            myApplication.startGame();
+//
+//            isGameEnded = myApplication.isGameEnd();
+//        }
     }
 
     boolean isGameEnd() {

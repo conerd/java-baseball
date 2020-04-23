@@ -23,12 +23,16 @@ public class BaseballGame {
 
     public void playGame() {
         boolean isGameEnd = false;
+
         computer.createNumbers();
         while(!isGameEnd) {
             Numbers playerNumbers = player.makeNumbers(InputView.inputNumbers());
             computer.compareNumbers(playerNumbers);
+
             OutputView.printResult(computer.getStrikeCount(), computer.getBallCount());
             isGameEnd = computer.isRightAnswer();
+
+            computer.reset();
         }
         askRestart();
     }
