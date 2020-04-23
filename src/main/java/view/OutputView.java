@@ -2,6 +2,7 @@ package view;
 
 public class OutputView {
     private static final int MAX_LENGTH = 3;
+    private static final int ZERO = 0;
 
     public static void printResult(int strikeCount, int ballCount) {
         if (strikeCount == MAX_LENGTH) {
@@ -12,13 +13,18 @@ public class OutputView {
     }
 
     public static void printHint(int strikeCount, int ballCount) {
-        if (strikeCount != 0) {
+        if (strikeCount != ZERO) {
             System.out.printf("%d 스트라이크 ", strikeCount);
         }
 
-        if (ballCount != 0) {
+        if (ballCount != ZERO) {
             System.out.printf("%d 볼 ", ballCount);
         }
+
+        if (strikeCount == ZERO && ballCount == ZERO) {
+            System.out.println("낫싱");
+        }
+        System.out.println();
     }
 
     public static void printRestartInfo() {
