@@ -1,15 +1,12 @@
 package domain;
 
-import java.util.ArrayList;
+import view.InputView;
 
 public class Player {
-    ArrayList<Integer> numbers;
+    Numbers numbers;
 
-    public ArrayList<Integer> makeNumbers(String inputNumbers) {
-        for (int i = 0; i < inputNumbers.length(); i++) {
-            numbers.add(inputNumbers.charAt(i) - '0');
-        }
-
-        return numbers;
+    public Numbers makeNumbers(String inputNumbers) {
+        this.numbers = new Numbers(InputView.inputNumbers());
+        return this.numbers;
     }
 }

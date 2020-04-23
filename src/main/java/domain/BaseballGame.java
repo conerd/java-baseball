@@ -3,8 +3,6 @@ package domain;
 import view.InputView;
 import view.OutputView;
 
-import java.util.ArrayList;
-
 public class BaseballGame {
     private static final int RESTART = 1;
     private static final int INVALID_VALUE = -1;
@@ -27,7 +25,7 @@ public class BaseballGame {
         boolean isGameEnd = false;
         computer.createNumbers();
         while(!isGameEnd) {
-            ArrayList<Integer> playerNumbers = player.makeNumbers(InputView.inputNumbers());
+            Numbers playerNumbers = player.makeNumbers(InputView.inputNumbers());
             computer.compareNumbers(playerNumbers);
             OutputView.printResult(computer.getStrikeCount(), computer.getBallCount());
             isGameEnd = computer.isRightAnswer();
